@@ -1,0 +1,65 @@
+:root {
+
+}
+
+* {
+    font-size: 24px;
+    padding: 5px;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+
+.head-banner {
+    font-size: 36px;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    background-image: linear-gradient(to right, blue, darkblue);
+    color: white;
+}
+
+.main-layout {
+    display: flex;
+}
+
+.sidebar {
+    width: 25%;
+    justify-content: center;
+    order: 1;
+}
+
+.search-div {
+    border-bottom: 3px solid grey;
+}
+
+.search-title, .search-field, .search-button {
+    text-align: center;
+}
+
+.content-div {
+    width: 75%;
+    order: 2;
+}
+
+.city-date {
+    font-weight: bold;
+}
+
+.temp, .wind, .humidity, .uv-index {
+    font-size: 18px;
+}
+
+.five-day-forecast {
+    width: 100%;
+    order: 3;
+    display: flex;
+}
+
+.five-day-forecast div {
+    width: 20%;
+}
+
+.five-day-forecast div p {
+    font-size: 18px;
+}
