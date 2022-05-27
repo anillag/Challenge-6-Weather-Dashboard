@@ -16,19 +16,20 @@
 // THEN I am again presented with current and future conditions
 //      for that city
 
+const apiKey = "44c256ba557f09fec96378b158180589";
 const searchButtonEl = document.querySelector("#search-button");
 const searchFieldEl = document.querySelector("#search-field");
 const contentDivEl = document.querySelector("#content-div");
 
-var city = "";
 
 function search(city) {
     event.preventDefault();
     contentDivEl.classList.remove("hidden");
-    var city = searchFieldEl.value.trim();
-    console.log("city variable is set to " + city + ".");
+    city = searchFieldEl.value.trim();
+    console.log("search:  city variable is set to " + city + ".");
 
     if (city) {
+        console.log("search:  city variable " + city + " is valid.");
         fetchCityData(city);
         searchFieldEl.value = "";
     } else {
@@ -36,8 +37,37 @@ function search(city) {
     }
 }
 
-function fetchCityData() {
-    console.log("Fetching city data for " + city);
+var fetchCityData = function(city) {
+    console.log("fetchCityData:  fetching city data for " + city + ".");
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+    console.log("fetchCityData, apiURL:  Fetching from " + apiUrl);
+    fetch(apiUrl)
+        .then(function(response) {
+            if (response.ok) {
+                console.log("fetchCityData, fetch.then:  Response is " + response + ".");
+                response.json()
+                    .then(function(data) {
+                        console.log("fetchCityData, fetch.then, if response.ok, response.then:  data variable is " + JSON.stringify(data));
+                        var lat = JSON.stringify(data.coord.lat);
+                        var lon = JSON.stringify(data.coord.lon);
+                        console.log("fetchCityData, fetch.then, if response.ok, response.then:  Coordinates for " + city + " are " + lat + " " + lon);
+                        fetchCurrentConditions(city, lat, lon);
+                    });
+            } else {
+                alert("fetch.then, else response.err:  Error reponse " + response.statusText);
+            }
+        })
+}
+
+var fetchCurrentConditions = function(city, lat, lon) {
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+    console.log("fetchCurrentConditions:  new apiURL variable is " + apiUrl);
+    fetch(apiUrl)
+        .then(function(response) {
+        if (response.ok) {
+
+        }
+        })
 }
 
 searchButtonEl.addEventListener("click", search);
