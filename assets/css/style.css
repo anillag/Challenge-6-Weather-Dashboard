@@ -67,3 +67,19 @@
 .five-day-forecast div p {
     font-size: 18px;
 }
+
+.uv-2 {
+    color: green;
+}
+
+.uv-5 {
+    color: yellow;
+}
+
+.uv-7 {
+    color: red;
+}
+
+.uv-10 {
+    color: purple;
+}
