@@ -15,3 +15,29 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions
 //      for that city
+
+const searchButtonEl = document.querySelector("#search-button");
+const searchFieldEl = document.querySelector("#search-field");
+const contentDivEl = document.querySelector("#content-div");
+
+var city = "";
+
+function search(city) {
+    event.preventDefault();
+    contentDivEl.classList.remove("hidden");
+    var city = searchFieldEl.value.trim();
+    console.log("city variable is set to " + city + ".");
+
+    if (city) {
+        fetchCityData(city);
+        searchFieldEl.value = "";
+    } else {
+        alert("Please enter a valid city.")
+    }
+}
+
+function fetchCityData() {
+    console.log("Fetching city data for " + city);
+}
+
+searchButtonEl.addEventListener("click", search);
