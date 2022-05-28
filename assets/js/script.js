@@ -21,10 +21,31 @@ const searchButtonEl = document.querySelector("#search-button");
 const searchFieldEl = document.querySelector("#search-field");
 const contentDivEl = document.querySelector("#content-div");
 const cityDateEl = document.querySelector("#city-date");
+const cityDateImageEl = document.querySelector("#city-date-image");
 const tempEl = document.querySelector("#temp");
 const windEl = document.querySelector("#wind");
 const humidityEl = document.querySelector("#humidity");
 const uvIndexEl = document.querySelector("#uv-index");
+const dayOneDateEl = document.querySelector("#day-one-date");
+const dayOneTempEl = document.querySelector("#day-one-temp");
+const dayOneWindEl = document.querySelector("#day-one-wind");
+const dayOneHumidityEl = document.querySelector("#day-one-humidity");
+const dayTwoDateEl = document.querySelector("#day-two-date");
+const dayTwoTempEl = document.querySelector("#day-two-temp");
+const dayTwoWindEl = document.querySelector("#day-two-wind");
+const dayTwoHumidityEl = document.querySelector("#day-two-humidity");
+const dayThreeDateEl = document.querySelector("#day-three-date");
+const dayThreeTempEl = document.querySelector("#day-three-temp");
+const dayThreeWindEl = document.querySelector("#day-three-wind");
+const dayThreeHumidityEl = document.querySelector("#day-three-humidity");
+const dayFourDateEl = document.querySelector("#day-four-date");
+const dayFourTempEl = document.querySelector("#day-four-temp");
+const dayFourWindEl = document.querySelector("#day-four-wind");
+const dayFourHumidityEl = document.querySelector("#day-four-humidity");
+const dayFiveDateEl = document.querySelector("#day-five-date");
+const dayFiveTempEl = document.querySelector("#day-five-temp");
+const dayFiveWindEl = document.querySelector("#day-five-wind");
+const dayFiveHumidityEl = document.querySelector("#day-five-humidity");
 
 function search(city) {
     event.preventDefault();
@@ -76,7 +97,6 @@ var fetchCurrentConditions = function(city, lat, lon) {
                     var date = new Date(JSON.stringify(data.current.dt)*1000).toLocaleDateString("en-US");
                     console.log("fetchCurrentConditions, fetch.then, if response.ok, response.then:  Current date is " + date);
                     cityDateEl.textContent = city + " " + date;
-                    
                     var temp = parseFloat((JSON.stringify(data.current.temp)-273.15)*1.8+32).toFixed(0);
                     tempEl.textContent = "Temp: " + temp + "°F";
                     var wind = parseFloat(JSON.stringify(data.current.wind_speed)).toFixed(0);
@@ -103,6 +123,58 @@ var fetchCurrentConditions = function(city, lat, lon) {
                 alert("fetch.then, else response.err:  Error response " + response.statusText);
             };
         });
+    fetchFiveDayForecast(city, apiUrl);
 };
+
+var fetchFiveDayForecast = function(city, apiUrl) {
+    fetch(apiUrl)
+        .then(function(response) {
+            if (response.ok) {
+                response.json()
+                    .then(function(data) {
+                        var dayOneDate = new Date(JSON.stringify(data.daily[1].dt)*1000).toLocaleDateString("en-US");
+                        dayOneDateEl.textContent = dayOneDate;
+                        var dayTwoDate = new Date(JSON.stringify(data.daily[2].dt)*1000).toLocaleDateString("en-US");
+                        dayTwoDateEl.textContent = dayTwoDate;
+                        var dayThreeDate = new Date(JSON.stringify(data.daily[3].dt)*1000).toLocaleDateString("en-US");
+                        dayThreeDateEl.textContent = dayThreeDate;
+                        var dayFourDate = new Date(JSON.stringify(data.daily[4].dt)*1000).toLocaleDateString("en-US");
+                        dayFourDateEl.textContent = dayFourDate;
+                        var dayFiveDate = new Date(JSON.stringify(data.daily[5].dt)*1000).toLocaleDateString("en-US");
+                        dayFiveDateEl.textContent = dayFiveDate;
+                        var dayOneTemp = parseFloat((JSON.stringify(data.daily[1].temp.day)-273.15)*1.8+32).toFixed(0);
+                        dayOneTempEl.textContent = "Temp: " + dayOneTemp + "°F";
+                        var dayTwoTemp = parseFloat((JSON.stringify(data.daily[2].temp.day)-273.15)*1.8+32).toFixed(0);
+                        dayTwoTempEl.textContent = "Temp: " + dayTwoTemp + "°F";
+                        var dayThreeTemp = parseFloat((JSON.stringify(data.daily[3].temp.day)-273.15)*1.8+32).toFixed(0);
+                        dayThreeTempEl.textContent = "Temp: " + dayThreeTemp + "°F";
+                        var dayFourTemp = parseFloat((JSON.stringify(data.daily[4].temp.day)-273.15)*1.8+32).toFixed(0);
+                        dayFourTempEl.textContent = "Temp: " + dayFourTemp + "°F";
+                        var dayFiveTemp = parseFloat((JSON.stringify(data.daily[5].temp.day)-273.15)*1.8+32).toFixed(0);
+                        dayFiveTempEl.textContent = "Temp: " + dayFiveTemp + "°F";
+                        var dayOneWind = parseFloat(JSON.stringify(data.daily[1].wind_speed)).toFixed(0);
+                        dayOneWindEl.textContent = "Wind: " + dayOneWind + " mph";
+                        var dayTwoWind = parseFloat(JSON.stringify(data.daily[2].wind_speed)).toFixed(0);
+                        dayTwoWindEl.textContent = "Wind: " + dayTwoWind + " mph";
+                        var dayThreeWind = parseFloat(JSON.stringify(data.daily[3].wind_speed)).toFixed(0);
+                        dayThreeWindEl.textContent = "Wind: " + dayThreeWind + " mph";
+                        var dayFourWind = parseFloat(JSON.stringify(data.daily[4].wind_speed)).toFixed(0);
+                        dayFourWindEl.textContent = "Wind: " + dayFourWind + " mph";
+                        var dayFiveWind = parseFloat(JSON.stringify(data.daily[5].wind_speed)).toFixed(0);
+                        dayFiveWindEl.textContent = "Wind: " + dayFiveWind + " mph";
+                        var dayOneHumidity = JSON.stringify(data.daily[1].humidity);
+                        dayOneHumidityEl.textContent = "Humidity: " + dayOneHumidity + "%";
+                        var dayTwoHumidity = JSON.stringify(data.daily[2].humidity);
+                        dayTwoHumidityEl.textContent = "Humidity: " + dayTwoHumidity + "%";
+                        var dayThreeHumidity = JSON.stringify(data.daily[3].humidity);
+                        dayThreeHumidityEl.textContent = "Humidity: " + dayThreeHumidity + "%";
+                        var dayFourHumidity = JSON.stringify(data.daily[4].humidity);
+                        dayFourHumidityEl.textContent = "Humidity: " + dayFourHumidity + "%";
+                        var dayFiveHumidity = JSON.stringify(data.daily[5].humidity);
+                        dayFiveHumidityEl.textContent = "Humidity: " + dayFiveHumidity + "%";
+                    })
+            }
+        })
+}
 
 searchButtonEl.addEventListener("click", search);
