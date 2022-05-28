@@ -2,7 +2,6 @@
     font-size: 24px;
     padding: 5px;
     margin: 0;
-    border: 1px solid black;
     font-family: sans-serif;
 }
 
@@ -48,6 +47,8 @@ input {
 
 .city-date {
     font-weight: bold;
+    background-color: darkblue;
+    color: white;
 }
 
 .temp, .wind, .humidity, .uv-index {
@@ -62,12 +63,12 @@ input {
 
 .five-day-forecast div {
     width: 20%;
+    background-color: darkblue;
+    color: white;
 }
 
 .five-day-forecast div p {
     font-size: 18px;
-    background-color: navy;
-    color: white;
 }
 
 .uv-2 {
