@@ -68,13 +68,10 @@ function search(city) {
 }
 
 var fetchCityData = function(city) {
-    console.log("fetchCityData:  fetching city data for " + city + ".");
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
-    console.log("fetchCityData, apiURL:  Fetching from " + apiUrl);
     fetch(apiUrl)
         .then(function(response) {
             if (response.ok) {
-                console.log("fetchCityData, fetch.then:  Response is " + response + ".");
                 response.json()
                     .then(function(data) {
                         var lat = JSON.stringify(data.coord.lat);
@@ -89,7 +86,6 @@ var fetchCityData = function(city) {
 
 var fetchCurrentConditions = function(city, lat, lon) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
-    console.log("fetchCurrentConditions:  new apiURL variable is " + apiUrl);
     fetch(apiUrl)
         .then(function(response) {
         if (response.ok) {
