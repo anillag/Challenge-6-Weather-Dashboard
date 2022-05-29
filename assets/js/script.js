@@ -94,7 +94,7 @@ var fetchCurrentConditions = function(city, lat, lon) {
                     var date = new Date(JSON.stringify(data.current.dt)*1000).toLocaleDateString("en-US");
                     var icon = JSON.stringify(data.current.weather[0].icon).slice(1, -1);
                     cityDateEl.innerHTML = city + " " + date +
-                    "<img id='city-state-image' src='http://openweathermap.org/img/wn/" + icon + ".png'>";
+                    "<img id='city-state-image' src='https://openweathermap.org/img/wn/" + icon + ".png'>";
                     var temp = parseFloat((JSON.stringify(data.current.temp)-273.15)*1.8+32).toFixed(0);
                     tempEl.textContent = "Temp: " + temp + "°F";
                     var wind = parseFloat(JSON.stringify(data.current.wind_speed)).toFixed(0);
@@ -174,15 +174,15 @@ var fetchFiveDayForecast = function(apiUrl) {
                     var dayFiveHumidity = JSON.stringify(data.daily[5].humidity);
                     dayFiveHumidityEl.textContent = "Humidity: " + dayFiveHumidity + "%";
                     var dayOneImage = JSON.stringify(data.daily[1].weather[0].icon).slice(1, -1);
-                    dayOneImageEl.setAttribute("src", "http://openweathermap.org/img/wn/" + dayOneImage + ".png");
+                    dayOneImageEl.setAttribute("src", "https://openweathermap.org/img/wn/" + dayOneImage + ".png");
                     var dayTwoImage = JSON.stringify(data.daily[2].weather[0].icon).slice(1, -1);
-                    dayTwoImageEl.setAttribute("src", "http://openweathermap.org/img/wn/" + dayTwoImage + ".png");
+                    dayTwoImageEl.setAttribute("src", "https://openweathermap.org/img/wn/" + dayTwoImage + ".png");
                     var dayThreeImage = JSON.stringify(data.daily[3].weather[0].icon).slice(1, -1);
-                    dayThreeImageEl.setAttribute("src", "http://openweathermap.org/img/wn/" + dayThreeImage + ".png");
+                    dayThreeImageEl.setAttribute("src", "https://openweathermap.org/img/wn/" + dayThreeImage + ".png");
                     var dayFourImage = JSON.stringify(data.daily[4].weather[0].icon).slice(1, -1);
-                    dayFourImageEl.setAttribute("src", "http://openweathermap.org/img/wn/" + dayFourImage + ".png");
+                    dayFourImageEl.setAttribute("src", "https://openweathermap.org/img/wn/" + dayFourImage + ".png");
                     var dayFiveImage = JSON.stringify(data.daily[5].weather[0].icon).slice(1, -1);
-                    dayFiveImageEl.setAttribute("src", "http://openweathermap.org/img/wn/" + dayFiveImage + ".png");
+                    dayFiveImageEl.setAttribute("src", "https://openweathermap.org/img/wn/" + dayFiveImage + ".png");
                 })
             }
         })
