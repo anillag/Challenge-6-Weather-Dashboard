@@ -9,6 +9,7 @@ A weather "dashboard" that displays current and future conditions for the city e
 - HTML 5
 - Basic CSS 3
 - JavaScript ES6 / ES2015
+- OpenWeather One-Call 2.5 API
 
 ## Usage
 
